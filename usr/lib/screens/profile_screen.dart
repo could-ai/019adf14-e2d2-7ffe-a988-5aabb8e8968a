@@ -22,16 +22,16 @@ class ProfileScreen extends StatelessWidget {
                   bottomRight: Radius.circular(30),
                 ),
               ),
-              child: Column(
+              child: const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const CircleAvatar(
+                  CircleAvatar(
                     radius: 40,
                     backgroundColor: Colors.white,
                     child: Icon(Icons.person, size: 50, color: Colors.grey),
                   ),
-                  const SizedBox(height: 10),
-                  const Text(
+                  SizedBox(height: 10),
+                  Text(
                     'Guest User',
                     style: TextStyle(
                       color: Colors.white,
@@ -39,8 +39,8 @@ class ProfileScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 5),
-                  const Text(
+                  SizedBox(height: 5),
+                  Text(
                     'guest@ebidmart.com',
                     style: TextStyle(color: Colors.white70),
                   ),
@@ -54,12 +54,44 @@ class ProfileScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Column(
                 children: [
-                  _buildProfileTile(Icons.shopping_bag_outlined, 'My Orders'),
-                  _buildProfileTile(Icons.favorite_border, 'Wishlist'),
-                  _buildProfileTile(Icons.location_on_outlined, 'Shipping Address'),
-                  _buildProfileTile(Icons.payment, 'Payment Methods'),
-                  _buildProfileTile(Icons.settings_outlined, 'Settings'),
-                  _buildProfileTile(Icons.help_outline, 'Help & Support'),
+                  _buildProfileTile(
+                    icon: Icons.dashboard_customize_outlined,
+                    title: 'Seller Dashboard',
+                    onTap: () {
+                      Navigator.pushNamed(context, '/seller/dashboard');
+                    },
+                  ),
+                  const Divider(),
+                  _buildProfileTile(
+                    icon: Icons.shopping_bag_outlined,
+                    title: 'My Orders',
+                    onTap: () {},
+                  ),
+                  _buildProfileTile(
+                    icon: Icons.favorite_border,
+                    title: 'Wishlist',
+                    onTap: () {},
+                  ),
+                  _buildProfileTile(
+                    icon: Icons.location_on_outlined,
+                    title: 'Shipping Address',
+                    onTap: () {},
+                  ),
+                  _buildProfileTile(
+                    icon: Icons.payment,
+                    title: 'Payment Methods',
+                    onTap: () {},
+                  ),
+                  _buildProfileTile(
+                    icon: Icons.settings_outlined,
+                    title: 'Settings',
+                    onTap: () {},
+                  ),
+                  _buildProfileTile(
+                    icon: Icons.help_outline,
+                    title: 'Help & Support',
+                    onTap: () {},
+                  ),
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {},
@@ -85,7 +117,7 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildProfileTile(IconData icon, String title) {
+  Widget _buildProfileTile({required IconData icon, required String title, required VoidCallback onTap}) {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
@@ -103,7 +135,7 @@ class ProfileScreen extends StatelessWidget {
         leading: Icon(icon, color: AppColors.primary),
         title: Text(title),
         trailing: const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
-        onTap: () {},
+        onTap: onTap,
       ),
     );
   }
